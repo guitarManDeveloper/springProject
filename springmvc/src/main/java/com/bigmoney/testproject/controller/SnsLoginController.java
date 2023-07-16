@@ -50,6 +50,7 @@ public class SnsLoginController {
             bw.write(sb.toString());
             bw.flush();
 
+            //responseCode 확인
             int responseCode = urlConnection.getResponseCode();
             System.out.println("kakaoLogin responseCode = " + responseCode);
 

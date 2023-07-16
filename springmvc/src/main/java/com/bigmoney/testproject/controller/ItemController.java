@@ -35,6 +35,8 @@ public class ItemController {
 	@RequestMapping(value = "/createItem" ,method = RequestMethod.GET)
 	public ModelAndView createItem(@RequestParam Map<String,Object> searchMap) {
 		ModelAndView mv = new ModelAndView();
+		
+		//검색map 담기
 		mv.addObject("searchMap", searchMap);
 		mv.setViewName("item/create");
 		return mv;
