@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 수정화면</title>
 </head>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -70,7 +70,7 @@
 				var options = "";
 				for(var i = 0; i< code.length; i++){
 					options += "<option value='" + code[i].id + "'";
-                    if (code[i].id === ${data.f_id}) {
+                    if (code[i].id === ${item.fId}) {
                         options += " selected";
                     }
                     options += ">" + code[i].description + "</option>"; 
@@ -95,7 +95,7 @@
     <h2 class="text-center">상품 수정</h2>
     <br/>
 	<form action="./modifyItem" method="post">
-        <input type="hidden" name="id" value="${data.id}">
+        <input type="hidden" name="id" value="${item.id}">
         <table class="table table-bordered">
             <colgroup>
                 <col width="180px">
@@ -107,16 +107,16 @@
             </tr>
             <tr>
                 <th>상품명</th>
-                <td><input type="text" style="width: 150px" class="form-control" id="itemname" name="item_name" value="${data.item_name}" placeholder="상품이름을 입력하세요"></td>
+                <td><input type="text" style="width: 150px" class="form-control" id="itemname" name="item_name" value="${item.itemName}" placeholder="상품이름을 입력하세요"></td>
             </tr>
             <tr>
                 <th>가격</th>
-                <td><input type="number" style="width: 150px"  class="form-control" id="price" name="price" value="${data.price }" placeholder="상품가격을 입력하세요"></td>
+                <td><input type="number" style="width: 150px"  class="form-control" id="price" name="price" value="${item.price }" placeholder="상품가격을 입력하세요"></td>
             </tr>
         </table>
 		<button id='btn_modify' class="btn btn-primary btn-sm" style="float: right;margin-left: 5px">수정</button>
 		<button id='btn_delete' class="btn btn-danger btn-sm" style="float: right;margin-left: 5px">삭제</button>
-        <a href="./selectItemList?page=${pageNumber}&viewType=${searchMap.viewType}" class="btn btn-secondary btn-sm" style="float: right;margin-left: 5px">목록</a>
+        <a href="./selectItemList?page=${itemVO.page}&viewType=${itemVO.viewType}" class="btn btn-secondary btn-sm" style="float: right;margin-left: 5px">목록</a>
 	</form>
 </div>
 </body>

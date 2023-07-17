@@ -3,7 +3,31 @@
 		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="item">
-	<select id="getItem" resultType="hashMap">
+	<resultMap id="itemVOMap" type="com.bigmoney.testproject.item.vo.ItemVO">
+		<id property="id" column="id"/>
+		<id property="itemName" column="item_name"/>
+		<id property="fId" column="f_id"/>
+		<id property="price" column="price"/>
+		<id property="originalFileName" column="originalFileName"/>
+		<id property="hit" column="hit"/>
+		<id property="rDate" column="r_date"/>
+		<id property="mDate" column="m_date"/>
+	</resultMap>
+	
+	<resultMap id="itemDetailVOMap" type="com.bigmoney.testproject.item.vo.ItemVO">
+		<id property="id" column="id"/>
+		<id property="itemName" column="item_name"/>
+		<id property="fId" column="f_id"/>
+		<id property="price" column="price"/>
+		<id property="originalFileName" column="originalFileName"/>
+		<id property="hit" column="hit"/>
+		<id property="rDate" column="r_date"/>
+		<id property="mDate" column="m_date"/>
+		<id property="description" column="description"/>
+	</resultMap>
+	
+	
+	<select id="getItem" parameterType="com.bigmoney.testproject.item.vo.ItemVO" resultMap="itemDetailVOMap">
 		select * from item;
 	</select>
 
@@ -12,7 +36,7 @@
 		values(#{item_name},#{f_id},#{price},#{originalFileName},#{r_date});
 	</insert>
 
-	<select id="select_detail" parameterType="hashMap" resultType="hashMap">
+	<select id="select_detail" parameterType="com.bigmoney.testproject.item.vo.ItemVO" resultMap="itemDetailVOMap">
 		SELECT it.*, CODE.description from item it
 		LEFT JOIN common_code code
 		ON it.f_id = CODE.id
@@ -29,7 +53,7 @@
 		delete from item where id = #{id}
 	</delete>
 
-	<select id='selectItemList' resultType="hashMap">
+	<select id='selectItemList' parameterType="com.bigmoney.testproject.item.vo.ItemVO" resultMap="itemVOMap">
 		select * from item
 		<if test='itemName != null &amp;&amp;  !itemName.equals("")'>
 			WHERE ITEM_NAME LIKE CONCAT('%', #{itemName}, '%')
@@ -38,14 +62,14 @@
 		limit #{offset}, #{pageSize}
 	</select>
 
-	<select id='getcount' resultType="int">
+	<select id='getcount' parameterType="com.bigmoney.testproject.item.vo.ItemVO" resultType="int">
 		select count(*) from item
 		<if test='itemName != null &amp;&amp;  !itemName.equals("")'>
 			WHERE ITEM_NAME LIKE CONCAT('%', #{itemName}, '%')
 		</if>
 	</select>
 
-	<update id="hitUp" parameterType="hashMap">
+	<update id="hitUp" parameterType="com.bigmoney.testproject.item.vo.ItemVO">
 		update item set hit = hit+1 where id = #{id}
 	</update>
 </mapper>    

@@ -49,8 +49,8 @@
     <br/>
     <form action="./selectItemList" method="get">
         <div class="input-group" style="float:right; width: 400px; margin-bottom: 15px;">
-            <input type="hidden" value="${searchMap.viewType}" name="viewType"/>
-            <input type="search" name="itemName" class="form-control rounded" placeholder="상품명을 입력하세요." value="${searchMap.itemName}" aria-label="Search" aria-describedby="search-addon" />
+            <input type="hidden" value="${itemVO.viewType}" name="viewType"/>
+            <input type="search" name="itemName" class="form-control rounded" placeholder="상품명을 입력하세요." value="${itemVO.itemName}" aria-label="Search" aria-describedby="search-addon" />
             <button type="submit" class="btn btn-outline-primary">검색</button>
 
         </div>
@@ -59,14 +59,11 @@
 
     <c:set var="buttonType1" value="primary"/>
     <c:set var="buttonType2" value="primary"/>
-    <c:if test="${searchMap.viewType eq 'list'}">
+    <c:if test="${itemVO.viewType eq 'list'}">
         <c:set var="buttonType1" value="danger"/>
     </c:if>
-    <c:if test="${searchMap.viewType eq 'photo'}">
+    <c:if test="${itemVO.viewType eq 'photo'}">
         <c:set var="buttonType2" value="danger"/>
-    </c:if>
-    <c:if test="${searchMap.viewType eq '' || searchMap.viewType == null}">
-        <c:set var="buttonType1" value="danger"/>
     </c:if>
     <a href="./selectItemList?viewType=list" class="btn btn-outline-${buttonType1}">리스트형</a>
     <a href="./selectItemList?viewType=photo" class="btn btn-outline-${buttonType2}">카드형</a>
@@ -97,42 +94,42 @@
         </colgroup>
 
         <tbody>
-        <c:set var="number" value="${totalCount-offset}"/>
-        <c:forEach var="item" items="${allItems}">
+        <c:set var="number" value="${totalCnt-offset}"/>
+        <c:forEach var="item" items="${itemList}">
             <tr>
                 <th scope="row">${number}</th>
-                <td><a href="./detailItem?id=${item.id}&viewType=${searchMap.viewType}" style="text-decoration: none;"><strong>${item.item_name}</strong></a></td>
-                <td><fmt:formatNumber value="${item.price }" pattern="#,###"/>원</td>
+                <td><a href="./detailItem?id=${item.id}&viewType=${itemVO.viewType}" style="text-decoration: none;"><strong>${item.itemName}</strong></a></td>
+                <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
                 <td>
-                    <fmt:parseDate value="${item.r_date}" var="dateValue" pattern="yyyyMMddHHmmss"/>
+                    <fmt:parseDate value="${item.rDate}" var="dateValue" pattern="yyyyMMddHHmmss"/>
                     <fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
                 </td>
                 <td>
-                    <fmt:parseDate value="${item.m_date}" var="dateValue" pattern="yyyyMMddHHmmss"/>
+                    <fmt:parseDate value="${item.mDate}" var="dateValue" pattern="yyyyMMddHHmmss"/>
                     <fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
                 </td>
                 <td>${item.hit}</td>
-                <td><a href="./detailItem?id=${item.id}&viewType=${searchMap.viewType}" class="btn btn-light btn-sm">상세보기</a></td>
-                <td><a href="./modifyItem?id=${item.id}&viewType=${searchMap.viewType}" class="btn btn-primary btn-sm">수정</a></td>
-                <td><a href="./deleteItem?id=${item.id}&viewType=${searchMap.viewType}" onclick="return fn_deleteAt(this.href)" class="btn btn-danger btn-sm">삭제</a></td>
+                <td><a href="./detailItem?id=${item.id}&viewType=${itemVO.viewType}" class="btn btn-light btn-sm">상세보기</a></td>
+                <td><a href="./modifyItem?id=${item.id}&viewType=${itemVO.viewType}" class="btn btn-primary btn-sm">수정</a></td>
+                <td><a href="./deleteItem?id=${item.id}&viewType=${itemVO.viewType}" onclick="return fn_deleteAt(this.href)" class="btn btn-danger btn-sm">삭제</a></td>
             </tr>
             <c:set var="number" value="${number-1}"/>
         </c:forEach>
         </tbody>
     </table>
-    <a href="./createItem?page=${pageNumber}&viewType=${searchMap.viewType}" class="btn btn-primary border-right btn-sm" style="float: right">상품등록</a>
+    <a href="./createItem?page=${itemVO.page}&viewType=${itemVO.viewType}" class="btn btn-primary border-right btn-sm" style="float: right">상품등록</a>
     <nav>
         <ul class="pagination justify-content-center">
             <li class="page-item ${currentPage == 1? 'disabled' : '' }">
-                <a class="page-link" href="?page=${currentPage-1}&viewType=${searchMap.viewType}">이전</a>
+                <a class="page-link" href="?page=${currentPage-1}&viewType=${itemVO.viewType}">이전</a>
             </li>
             <c:forEach begin="1" end="${totalPage}" var="pageNumber">
-                <li class="page-item ${pageNumber == currentPage ? 'active' : '' }" aria-current="page">
-                    <a class="page-link" href="?page=${pageNumber}&viewType=${searchMap.viewType}">${pageNumber}</a>
+                <li class="page-item ${itemVO.page == currentPage ? 'active' : '' }" aria-current="page">
+                    <a class="page-link" href="?page=${itemVO.page}&viewType=${itemVO.viewType}">${itemVO.page}</a>
                 </li>
             </c:forEach>
             <li class="page-item ${currentPage == totalPage? 'disabled' : '' }">
-                <a class="page-link" href="?page=${currentPage+1}&viewType=${searchMap.viewType}">다음</a>
+                <a class="page-link" href="?page=${currentPage+1}&viewType=${itemVO.viewType}">다음</a>
             </li>
         </ul>
     </nav>

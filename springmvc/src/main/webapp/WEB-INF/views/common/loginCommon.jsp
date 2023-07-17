@@ -32,12 +32,12 @@
         return false;
     }
 </script>
-<c:if test="${empty memberMap}">
+<c:if test="${empty loginVO}"> 
     <a href="./login" id='login' class='btn btn-secondary btn-sm' style="float: right;margin-left: 10px">사용자로그인</a>
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=596030f6cbaa088976c54efe745729dc&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code" id='login' style="float: right"> <img src="/resources/snsLogin/kakao_login_small.png"/></a>
 </c:if>
 
-<c:if test="${not empty memberMap}">
+<c:if test="${not empty loginVO}">
     <button id='logout' class = 'btn btn-success btn-sm' style="float: right; margin-left: 10px">로그아웃</button>
-    <div style="float: right"><strong>${memberMap.user_name}</strong></div>
+    <div style="float: right"><strong>${loginVO.userName}</strong></div>
 </c:if>

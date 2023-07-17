@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 상세보기</title>
 </head>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -28,11 +28,11 @@
 			$.ajax({
 				url: '/deleteItem',
 				type:'POST',
-				data:{id:${data.id},viewType:'${searchMap.viewType}'},
+				data:{id:${item.id},viewType:'${itemVO.viewType}'},
 				success:function(response){
 					alert("삭제되었습니다.");
-					if('${searchMap.viewType}' == 'photo'){
-						window.location.href = './selectItemList?viewType=${searchMap.viewType}';
+					if('${itemVO.viewType}' == 'photo'){
+						window.location.href = './selectItemList?viewType=${itemVO.viewType}';
 					}else{
 						window.location.href = './selectItemList';
 					}
@@ -52,7 +52,7 @@
 				var options = "";
 				for(var i = 0; i< code.length; i++){
 					options += "<option value='" + code[i].id + "'";
-                    if (code[i].id === ${data.f_id}) {
+                    if (code[i].id === ${item.fId}) {
                         options += " selected";
                     }
                     options += ">" + code[i].description + "</option>"; 
@@ -83,27 +83,27 @@
 		</colgroup>
 		<tr>
 			<th>종류</th>
-			<td>${data.description}</td>
+			<td>${item.description}</td>
 		</tr>
 		<tr>
 			<th>상품명</th>
-			<td>${data.item_name}</td>
+			<td>${item.itemName}</td>
 		</tr>
 		<tr>
 			<th>가격</th>
-			<td><fmt:formatNumber value="${data.price }" pattern="#,###"/>원</td>
+			<td><fmt:formatNumber value="${item.price }" pattern="#,###"/>원</td>
 		</tr>
         <tr>
             <th>이미지</th>
             <%--<td>/image/파랑.jpg</td>--%>
             <td>
-                <img class="card-img-bottom d-block" src="/resources/userImageData/${data.originalFileName }" alt="Card image cap">
+                <img class="card-img-bottom d-block" src="/resources/userImageData/${item.originalFileName }" alt="Card image cap">
             </td>
         </tr>
 	</table>
 	<div style="margin-left: 900px; margin-right: auto;">
-		<a href="./selectItemList?page=${pageNumber}&viewType=${searchMap.viewType}" class="btn btn-secondary btn-sm" >목록</a>
-		<a href="./modifyItem?id=${data.id}&page=${pageNumber}&viewType=${searchMap.viewType}" class="btn btn-primary btn-sm" >수정</a>
+		<a href="./selectItemList?page=${itemVO.page}&viewType=${itemVO.viewType}" class="btn btn-secondary btn-sm" >목록</a>
+		<a href="./modifyItem?id=${item.id}&page=${itemVO.page}&viewType=${itemVO.viewType}" class="btn btn-primary btn-sm" >수정</a>
 		<button id='btn_delete' class="btn btn-danger btn-sm">삭제</button>
 	</div>
 

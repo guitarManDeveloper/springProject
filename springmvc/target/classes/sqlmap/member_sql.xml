@@ -1,33 +1,20 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="member">
-	<insert id="insert" parameterType="hashMap">
+	<resultMap id="memberVOMap" type="com.bigmoney.testproject.member.vo.MemberVO">
+		<id property="userName" column="user_name"/>
+		<id property="userPsw" column="user_psw"/>
+		<id property="email" column="email"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.bigmoney.testproject.member.vo.MemberVO">
 		insert into member(email,user_name,user_psw) 
 		values(#{email},#{user_name},#{user_psw})
 	</insert>
 	
-	<select id="getmember" resultType="hashMap">
+	<select id="getmember" parameterType="com.bigmoney.testproject.member.vo.MemberVO" resultMap="memberVOMap">
 		select * from member where email = #{email};
 	</select>
 
-	<!-- <insert id="insert" useGeneratedKeys="true"	keyProperty="id" parameterType="hashMap">
-		insert into item(item_name,f_id,price)
-		values(#{item_name},#{f_id},#{price});
-	</insert>
-	
-	<select id="select_detail" parameterType="hashMap" resultType="hashMap">
-		select * from item where id = #{id} 
-	</select>
-	
-	<select id="modify" parameterType="hashMap">
-		update item
-			set f_id = #{f_id}, item_name=#{item_name},price=#{price}
-		where id = #{id};
-	</select>
-	
-	<select id="delete" parameterType="hashMap">
-		delete from item where id = #{id}
-	</select> -->
 </mapper>    
