@@ -124,8 +124,8 @@
                 <a class="page-link" href="?page=${currentPage-1}&viewType=${itemVO.viewType}">이전</a>
             </li>
             <c:forEach begin="1" end="${totalPage}" var="pageNumber">
-                <li class="page-item ${itemVO.page == currentPage ? 'active' : '' }" aria-current="page">
-                    <a class="page-link" href="?page=${itemVO.page}&viewType=${itemVO.viewType}">${itemVO.page}</a>
+                <li class="page-item ${pageNumber == currentPage ? 'active' : '' }" aria-current="page">
+                    <a class="page-link" href="?page=${pageNumber}&viewType=${itemVO.viewType}">${pageNumber}</a>
                 </li>
             </c:forEach>
             <li class="page-item ${currentPage == totalPage? 'disabled' : '' }">

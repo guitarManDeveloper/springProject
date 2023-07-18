@@ -54,15 +54,15 @@
 			</tr>
 			<tr>
 				<th>상품명</th>
-				<td><input type="text" style="width: 150px" class="form-control" id="itemname" name="item_name" value="" placeholder="상품이름을 입력하세요"></td>
+				<td><input type="text" style="width: 250px" class="form-control" id="itemname" name="item_name" value="" placeholder="상품이름을 입력하세요"></td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input type="number" style="width: 150px"  class="form-control" id="price" name="price" value="" placeholder="상품가격을 입력하세요"></td>
+				<td><input type="number" style="width: 250px"  class="form-control" id="price" name="price" value="" placeholder="상품가격을 입력하세요"></td>
 			</tr>
             <tr>
                 <th>이미지</th>
-                <td><input type="file" style="width: 150px"  class="form-control" id="image" name="image" value="" placeholder="이미지를 첨부하세요"></td>
+                <td><input type="file" style="width: 250px"  class="form-control" id="image" name="image" value="" placeholder="이미지를 첨부하세요"></td>
             </tr>
 		</table>
 		<button id='btn_modify' type="submit" class="btn btn-primary btn-sm" style="float: right;margin-left: 5px">등록</button>
