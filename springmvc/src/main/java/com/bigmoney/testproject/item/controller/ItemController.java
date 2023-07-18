@@ -36,7 +36,7 @@ public class ItemController {
 
 	/**
 	 * 상품등록 처리
-	 * @param map
+	 * @param itemVO
 	 * @return "/WEB-INF/views/item/lists.jsp"
 	 */
 	@RequestMapping(value = "/createItem" ,method = RequestMethod.POST)
@@ -56,7 +56,7 @@ public class ItemController {
 
 	/**
 	 * 상품 상세보기 화면조회
-	 * @param searchMap
+	 * @param itemVO
 	 * @return "/WEB-INF/views/item/detail.jsp"
 	 */
 	@GetMapping("/detailItem")
@@ -76,7 +76,7 @@ public class ItemController {
 
 	/**
 	 * 수정 화면조회
-	 * @param searchMap
+	 * @param itemVO
 	 * @return "/WEB-INF/views/item/modify.jsp"
 	 * @throws Exception
 	 */

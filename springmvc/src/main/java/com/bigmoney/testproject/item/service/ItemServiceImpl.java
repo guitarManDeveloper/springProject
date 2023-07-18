@@ -38,7 +38,10 @@ public class ItemServiceImpl implements ItemService {
 				new DefaultFileRenamePolicy());
 
 		//파일저장
-		boolean  FileUtil.fileUpload(request,multi);
+		boolean fileUploadFlag = FileUtil.fileUpload(request,multi);
+		if(fileUploadFlag) {
+			itemVO.setOriginalFileName(multi.getOriginalFileName("image"));
+		}
 		
 		//현재시간구하기
 		String strNowDate = DateUtil.nowDate("yyyyMMddHHmmss");

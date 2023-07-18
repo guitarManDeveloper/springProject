@@ -19,8 +19,10 @@ public interface ItemService {
 	ItemVO detail(ItemVO itemVO);
 
 	boolean update(Map<String, Object> map);
+	
 	void delete(Map<String, Object> map);
-	ItemVO selectItemList(ItemVO itemVO);
+	
+	List<ItemVO> selectItemList(ItemVO itemVO);
 
 	/**
 	 * 상품목록의 카운트 수

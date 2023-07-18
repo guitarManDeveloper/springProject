@@ -11,7 +11,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUtil {
 
-	public static void fileUpload(HttpServletRequest request, MultipartRequest multi) {
+	public static boolean fileUpload(HttpServletRequest request, MultipartRequest multi) {
 		try {
 			
 			Enumeration<?> files = multi.getFileNames();
@@ -32,15 +32,18 @@ public class FileUtil {
 	                contentType 			= multi.getContentType(element);	// 업로드된 파일의 타입을 반환
 	                length 					= multi.getFile(element).length(); // 파일의 크기를 반환 (long타입)
 	            }
+	        }else {
+	        	return false;
 	        }
 			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		
-		
+		return true;
 		
 	}
 	
