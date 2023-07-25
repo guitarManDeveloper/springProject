@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -50,11 +49,11 @@
 			</colgroup>
 			<tr>
 				<th>종류</th>
-				<td><select id="commonCodeSelect" name="f_id" style="width: 150px"  class="form-select" aria-label="Default select example"></select></td>
+				<td><select id="commonCodeSelect" name="fId" style="width: 150px"  class="form-select" aria-label="Default select example"></select></td>
 			</tr>
 			<tr>
 				<th>상품명</th>
-				<td><input type="text" style="width: 250px" class="form-control" id="itemname" name="item_name" value="" placeholder="상품이름을 입력하세요"></td>
+				<td><input type="text" style="width: 250px" class="form-control" id="itemname" name="itemName" value="" placeholder="상품이름을 입력하세요"></td>
 			</tr>
 			<tr>
 				<th>가격</th>

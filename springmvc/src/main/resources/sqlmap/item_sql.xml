@@ -31,15 +31,15 @@
 		select * from item;
 	</select>
 
-	<insert id="insert" useGeneratedKeys="true"	keyProperty="id" parameterType="hashMap">
+	<insert id="insert" useGeneratedKeys="true"	keyProperty="id" parameterType="com.bigmoney.testproject.item.vo.ItemVO">
 		insert into item(item_name,f_id,price,originalFileName,r_date)
-		values(#{item_name},#{f_id},#{price},#{originalFileName},#{r_date});
+		values(#{itemName},#{fId},#{price},#{originalFileName},#{rDate});
 	</insert>
 
 	<select id="select_detail" parameterType="com.bigmoney.testproject.item.vo.ItemVO" resultMap="itemDetailVOMap">
-		SELECT it.*, CODE.description from item it
-		LEFT JOIN common_code code
-		ON it.f_id = CODE.id
+		SELECT it.*, comcode.description from item it
+		LEFT JOIN common_code comcode
+		ON it.f_id = comcode.id
 		WHERE it.id = #{id}
 	</select>
 

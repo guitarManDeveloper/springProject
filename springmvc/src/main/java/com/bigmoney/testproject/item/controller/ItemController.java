@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -47,6 +48,7 @@ public class ItemController {
 			itemService.insert(itemVO, request);
 			mav.setViewName("redirect:/selectItemList");
 		} catch (Exception e) {
+			e.printStackTrace();
 			//등록실패
 			mav.setViewName("redirect:/createItem");
 			return mav;
@@ -175,6 +177,7 @@ public class ItemController {
 		mv.addObject("totalPage", totalPage);
 		mv.addObject("currentPage", itemVO.getPage());
 
+		
         if(itemVO.getViewType().equals("list")){
             mv.setViewName("/item/lists");
         }else if(itemVO.getViewType().equals("photo")){

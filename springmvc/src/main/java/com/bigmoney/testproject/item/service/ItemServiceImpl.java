@@ -21,8 +21,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-	
+	//테스트용
 	static String ITEM_FILE_PATH = "D:\\LHW\\MAINTENANCE\\intelliJProject\\springmvc\\src\\main\\webapp\\resources\\userImageData"; //파일저장경로
+	
+	//실서버용
+	//static String ITEM_FILE_PATH = "/home/item/webapp/resources/userImageData"; //파일저장경로	
 	static int ITEM_FILE_MAX_SIZE = 1024 * 1024 * 5; //파일최대허용용량
 	
 	@Autowired
